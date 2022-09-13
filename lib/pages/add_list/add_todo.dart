@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mynotes/Customs/Colors/note_colors.dart';
 import 'package:mynotes/model/list_model.dart';
+import 'package:mynotes/pages/groups.dart';
 
 class AddTodo extends StatefulWidget {
   const AddTodo({super.key});
@@ -10,15 +11,25 @@ class AddTodo extends StatefulWidget {
 }
 
 class _AddTodoState extends State<AddTodo> {
+  Color selectedColor = CustomColors.blue;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  void clear() {
+    setState(() {
+      titleController.clear();
+      descriptionController.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-        actionsIconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Theme.of(context).hintColor),
+        actionsIconTheme: IconThemeData(color: Theme.of(context).hintColor),
         actions: [
           IconButton(
             onPressed: () {},
@@ -28,12 +39,21 @@ class _AddTodoState extends State<AddTodo> {
             onPressed: () {},
             icon: const Icon(Icons.dashboard_outlined),
           ),
+          IconButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const Groups(),
+              ),
+            ),
+            icon: const Icon(Icons.auto_awesome_motion_rounded),
+          )
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             TextFormField(
+              controller: titleController,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
@@ -46,11 +66,23 @@ class _AddTodoState extends State<AddTodo> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Container(
+                height: 1,
+                width: MediaQuery.of(context).size.width,
+                color: Theme.of(context).hintColor,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             TextFormField(
               minLines: 5,
               maxLines: 25,
+              controller: descriptionController,
               style: const TextStyle(
                 fontSize: 16,
               ),
@@ -67,10 +99,10 @@ class _AddTodoState extends State<AddTodo> {
       bottomNavigationBar: Container(
         height: 100.0,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.blue.withOpacity(0.5),
+              color: Theme.of(context).shadowColor,
               spreadRadius: 2.0,
               blurRadius: 8.0,
             )
@@ -85,26 +117,33 @@ class _AddTodoState extends State<AddTodo> {
                 Row(
                   children: [
                     colorSelection(CustomColors.blue),
-                    colorSelection(CustomColors.red),
+                    colorSelection(CustomColors.lightOrange),
                     colorSelection(CustomColors.orange),
+                    colorSelection(CustomColors.pink),
                     colorSelection(CustomColors.purple),
+                    colorSelection(CustomColors.red),
                   ],
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    String titulo = titleController.text;
+                    String descricao = descriptionController.text;
+
+                    products.add(
+                      Product(
+                          title: titulo,
+                          description: descricao,
+                          color: selectedColor),
+                    );
+
+                    clear();
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: selectedColor,
                       shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue.withOpacity(0.5),
-                          spreadRadius: 2.0,
-                          blurRadius: 8.0,
-                        )
-                      ],
                     ),
                     child: const Icon(
                       Icons.check,
@@ -124,7 +163,11 @@ class _AddTodoState extends State<AddTodo> {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            selectedColor = color;
+          });
+        },
         child: Container(
           height: 30,
           width: 30,

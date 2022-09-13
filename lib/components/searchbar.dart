@@ -12,18 +12,16 @@ class SarchBar extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(5.0),
         ),
         child: TextFormField(
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.search,
-              color: Colors.black,
             ),
             hintText: 'Search',
-            hintStyle: TextStyle(
-              color: Colors.black,
-            ),
+            hintStyle: TextStyle(),
             border: OutlineInputBorder(
               borderSide: BorderSide.none,
             ),

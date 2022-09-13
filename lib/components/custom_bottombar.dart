@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/pages/group_notes.dart';
 import 'package:mynotes/pages/settings.dart';
 
 import '../pages/add_list/add_todo.dart';
@@ -26,7 +27,13 @@ class CustomBottomBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const GroupNotes(),
+                ),
+              );
+            },
             icon: const Icon(Icons.space_dashboard_rounded),
           ),
           InkWell(
@@ -51,7 +58,7 @@ class CustomBottomBar extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: ((context) => const Settings()),
+                  builder: (context) => const Settings(),
                 ),
               );
             },

@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
               SarchBar(),
             ],
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(
                 text: 'Notas',
