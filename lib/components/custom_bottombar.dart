@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/pages/settings.dart';
 
 import '../pages/add_list/add_todo.dart';
 
@@ -12,10 +13,10 @@ class CustomBottomBar extends StatelessWidget {
     return Container(
       height: 60.0,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.blue.withOpacity(0.5),
+            color: Theme.of(context).shadowColor,
             spreadRadius: 2.0,
             blurRadius: 8.0,
           )
@@ -47,7 +48,13 @@ class CustomBottomBar extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: ((context) => const Settings()),
+                ),
+              );
+            },
             icon: const Icon(Icons.person_outline_rounded),
           ),
         ],

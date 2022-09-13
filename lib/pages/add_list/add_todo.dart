@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/Customs/Colors/note_colors.dart';
 import 'package:mynotes/model/list_model.dart';
 
 class AddTodo extends StatefulWidget {
@@ -83,10 +84,10 @@ class _AddTodoState extends State<AddTodo> {
                 const Spacer(),
                 Row(
                   children: [
-                    colorSelection(products[0].color),
-                    colorSelection(products[1].color),
-                    colorSelection(products[2].color),
-                    colorSelection(products[3].color),
+                    colorSelection(CustomColors.blue),
+                    colorSelection(CustomColors.red),
+                    colorSelection(CustomColors.orange),
+                    colorSelection(CustomColors.purple),
                   ],
                 ),
                 const Spacer(),
