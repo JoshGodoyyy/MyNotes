@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mynotes/Customs/Colors/note_colors.dart';
+import 'package:mynotes/customs/colors/note_colors.dart';
 import 'package:mynotes/model/list_model.dart';
 import 'package:mynotes/pages/groups.dart';
 

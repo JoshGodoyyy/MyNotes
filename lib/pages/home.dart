@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/pages/todos.dart';
 
 import '../components/custom_appbar.dart';
-import '../components/custom_bottombar.dart';
 import '../components/list_data.dart';
 import '../components/searchbar.dart';
 
@@ -39,20 +39,12 @@ class _HomeState extends State<Home> {
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 5,
         ),
-        bottomNavigationBar: const CustomBottomBar(),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: TabBarView(
-              children: [
-                ListView(
-                  children: const [
-                    ListData(),
-                  ],
-                ),
-                Container(),
-              ],
-            ),
+        body: const SafeArea(
+          child: TabBarView(
+            children: [
+              ListData(),
+              Todos(),
+            ],
           ),
         ),
       ),

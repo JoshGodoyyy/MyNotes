@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mynotes/Customs/Themes/theme_constants.dart';
-import 'package:mynotes/Customs/Themes/theme_manager.dart';
+import 'package:mynotes/customs/themes/theme_constants.dart';
+import 'package:mynotes/customs/themes/theme_manager.dart';
 import 'package:mynotes/pages/home.dart';
+import 'package:mynotes/pages/introduction.dart';
 
 void main() => runApp(const MyApp());
 
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: const Introduction(),
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeManager.instance.themeMode,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/model/note.dart';
 
-import '../Customs/Colors/note_colors.dart';
+import '../customs/colors/note_colors.dart';
 
 class Groups extends StatefulWidget {
   const Groups({super.key});
@@ -11,6 +12,7 @@ class Groups extends StatefulWidget {
 
 class _GroupsState extends State<Groups> {
   Color backgroundColor = CustomColors.blue;
+  TextEditingController title = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class _GroupsState extends State<Groups> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           child: TextFormField(
+                            controller: title,
                             decoration: const InputDecoration(
                               hintText: 'Novo Grupo',
                               border: OutlineInputBorder(
@@ -49,7 +52,13 @@ class _GroupsState extends State<Groups> {
                         width: 10.0,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            groups.add(
+                              Group(title: title.text, color: backgroundColor),
+                            );
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(20.0),
                           backgroundColor: backgroundColor,
@@ -78,15 +87,13 @@ class _GroupsState extends State<Groups> {
               const SizedBox(
                 height: 16.0,
               ),
-              Column(
-                children: [
-                  newGroup('Grupo 1', CustomColors.blue),
-                  newGroup('Grupo 2', CustomColors.lightOrange),
-                  newGroup('Grupo 3', CustomColors.orange),
-                  newGroup('Grupo 4', CustomColors.pink),
-                  newGroup('Grupo 5', CustomColors.purple),
-                  newGroup('Grupo 6', CustomColors.red),
-                ],
+              Expanded(
+                child: ListView(
+                  children: [
+                    if (groups.isNotEmpty)
+                      for (var i in groups) newGroup(i.title, i.color)
+                  ],
+                ),
               )
             ],
           ),
@@ -95,31 +102,31 @@ class _GroupsState extends State<Groups> {
     );
   }
 
-  InkWell newGroup(String title, Color color) {
-    return InkWell(
-      onTap: () {},
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-              width: 25,
-              height: 25,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: color,
-              ),
+  Row newGroup(String title, Color color) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            width: 25,
+            height: 25,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: color,
             ),
           ),
-          const SizedBox(
-            width: 16.0,
-          ),
-          Text(
-            title,
-            style: const TextStyle(fontSize: 16.0),
-          )
-        ],
-      ),
+        ),
+        const SizedBox(
+          width: 16.0,
+        ),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 16.0),
+        ),
+        Expanded(child: Container()),
+        TextButton(onPressed: () {}, child: const Text('Editar')),
+        TextButton(onPressed: () {}, child: const Text('Excluir')),
+      ],
     );
   }
 

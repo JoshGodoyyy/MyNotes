@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/settings/configurations.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String username = Configurations.instance.username!;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            'Olá, Josh',
-            style: TextStyle(
+          Text(
+            'Olá, $username',
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               //color: Colors.black,
